@@ -18,8 +18,6 @@ class Mocha {
             _.expect = untyped __js__("require('expect.js')");
         }
 
-        _ = untyped __js__("(typeof window !== 'undefined') ? window : global");
-
         var p = _.expect.Assertion.prototype;
         p.enumEqual = function (obj) {
             var self = untyped __js__("this");
