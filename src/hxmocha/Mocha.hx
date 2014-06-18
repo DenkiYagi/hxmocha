@@ -10,7 +10,7 @@ class Mocha {
     static var _: Dynamic;
     static function __init__() {
         #if !macro
-        _ = untyped __js__("(typeof window) ? window : global");
+        _ = untyped __js__("(typeof window !== 'undefined') ? window : global");
 
         var p = _.expect.Assertion.prototype;
         p.enumEqual = function (obj) {
