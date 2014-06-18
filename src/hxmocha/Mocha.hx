@@ -10,6 +10,14 @@ class Mocha {
     static var _: Dynamic;
     static function __init__() {
         #if !macro
+        if (untyped __js__("typeof window !== 'undefined'")) {
+            _ = untyped __js__("window");
+        } else {
+            _ = untyped __js__("global");
+            _.mocha = untyped __js__("require('mocha')");
+            _.expect = untyped __js__("require('expect.js')");
+        }
+
         _ = untyped __js__("(typeof window !== 'undefined') ? window : global");
 
         var p = _.expect.Assertion.prototype;
