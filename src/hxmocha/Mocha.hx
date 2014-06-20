@@ -42,7 +42,7 @@ class Mocha {
         _.describe.skip(title, fn);
     }
 
-    @:overload(function (title: String, ?fn: (Void -> Void) -> Void): Void{})
+    @:overload(function (title: String, ?fn: (?Dynamic -> Void) -> Void): Void{})
     public static inline function it(title: String, ?fn: Void -> Void): Void {
         _.it(title, fn);
     }
@@ -69,6 +69,10 @@ class Mocha {
 
     public static inline function expect(value: Dynamic): DefaultAssertion {
         return _.expect(value);
+    }
+
+    public static inline function expectFail(?message: String): Void {
+        _.expect(null).fail(message);
     }
 
     macro public static function addSpec(specClass: Expr) {
