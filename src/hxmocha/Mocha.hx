@@ -181,7 +181,7 @@ extern class Assertion {
     @:overload(function (expected: {}): Void{})
     function an(expected: String): Void;
 
-    function match(expected: EReg): Void;
+    function match(expected: Dynamic): Void;
 
     function contain(value: Dynamic): Void;
 
@@ -196,10 +196,10 @@ extern class Assertion {
     function keys(names: Array<String>): Void;
 
     @:overload(function (f: Dynamic -> Void): Void{})
-    @:overload(function (pattern: EReg): Void{})
+    @:overload(function (pattern: Dynamic): Void{})
     function throwException(): Void;
     @:overload(function (f: Dynamic -> Void): Void{})
-    @:overload(function (pattern: EReg): Void{})
+    @:overload(function (pattern: Dynamic): Void{})
     function throwError(): Void;
 
     @:overload(function (start: Float, finish: Float): Void{})
