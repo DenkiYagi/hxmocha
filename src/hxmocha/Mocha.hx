@@ -181,7 +181,7 @@ extern class Assertion {
     @:overload(function (expected: {}): Void{})
     function an(expected: String): Void;
 
-    function match(expected: Dynamic): Void;
+    function match(expected: RegExp): Void;
 
     function contain(value: Dynamic): Void;
 
@@ -196,10 +196,10 @@ extern class Assertion {
     function keys(names: Array<String>): Void;
 
     @:overload(function (f: Dynamic -> Void): Void{})
-    @:overload(function (pattern: Dynamic): Void{})
+    @:overload(function (pattern: RegExp): Void{})
     function throwException(): Void;
     @:overload(function (f: Dynamic -> Void): Void{})
-    @:overload(function (pattern: Dynamic): Void{})
+    @:overload(function (pattern: RegExp): Void{})
     function throwError(): Void;
 
     @:overload(function (start: Float, finish: Float): Void{})
@@ -251,3 +251,18 @@ extern class HaveAssertion extends Assertion {
 }
 
 typedef BeAssertion = Assertion;
+
+@:native("RegExp")
+extern class RegExp {
+    public var global(default, null): Bool;
+    public var ignoreCase(default, null): Bool;
+    public var lastIndex(default, default): Int;
+    public var multiline(default, null): Bool;
+    public var source(default, null): String;
+
+    public function new(pattern: String, ?flags: String);
+
+    public function exec(str: String): Array<String>;
+    public function test(str: String): Bool;
+    public function toString(): String;
+}
